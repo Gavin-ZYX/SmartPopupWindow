@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gavin.com.popuptest.MainActivity">
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/below_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="下-左"/>
+
+        <RadioButton
+            android:id="@+id/below_align_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="下-左对齐"/>
+
+        <RadioButton
+            android:id="@+id/below_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下-右"/>
+
+        <RadioButton
+            android:id="@+id/below_align_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下-右对齐"/>
+
+        <RadioButton
+            android:id="@+id/below_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下-居中"/>
+
+        <RadioButton
+            android:id="@+id/above_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上-居中"/>
+
+        <RadioButton
+            android:id="@+id/left_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="左—居中"/>
+
+        <RadioButton
+            android:id="@+id/right_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="右-居中"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Hello World!"
+        android:textColor="#FFF"
+        />
+</RelativeLayout>
