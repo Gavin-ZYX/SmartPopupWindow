@@ -22,11 +22,12 @@ import android.widget.PopupWindow;
 /**
  * 可以在任意位置显示的PopupWindow
  * 用法：
- SmartPopupWindow.Builder
-    .build(Activity.this, view)
-    .setAlpha(0.4f)                   //背景灰度     默认全透明
-    .setOutsideTouchDismiss(false)    //点击外部消失  默认true（消失）
-    .showAtAnchorView(view, VerticalPosition.ABOVE, HorizontalPosition.CENTER);
+ SmartPopupWindow popupWindow= SmartPopupWindow.Builder
+ .build(Activity.this, view)
+ .setAlpha(0.4f)                   //背景灰度     默认全透明
+ .setOutsideTouchDismiss(false)    //点击外部消失  默认true（消失）
+ .createPopupWindow();
+ popupWindow.showAtAnchorView(view, VerticalPosition.ABOVE, HorizontalPosition.CENTER);
  */
 public class SmartPopupWindow extends PopupWindow {
 
@@ -125,6 +126,17 @@ public class SmartPopupWindow extends PopupWindow {
         mOffsetY = y;
         addGlobalLayoutListener(getContentView());
         super.showAtLocation(parent, gravity, x, y);
+    }
+
+    public void showAtAnchorView(@NonNull View anchorView, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos) {
+        showAtAnchorView(anchorView, verticalPos, horizontalPos, true);
+    }
+
+    public void showAtAnchorView(@NonNull View anchorView, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos, boolean fitInScreen) {
+        showAtAnchorView(anchorView, verticalPos, horizontalPos, 0, 0, fitInScreen);
+    }
+    public void showAtAnchorView(@NonNull View anchorView, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos, int x, int y) {
+        showAtAnchorView(anchorView, verticalPos, horizontalPos, x, y, true);
     }
 
     public void showAtAnchorView(@NonNull View anchorView, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos, int x, int y, boolean fitInScreen) {
@@ -349,42 +361,14 @@ public class SmartPopupWindow extends PopupWindow {
             return this;
         }
 
-        public void show(@NonNull View anchor, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos) {
-            show(anchor, verticalPos, horizontalPos, 0, 0);
-        }
-
-        public void show(@NonNull View anchor, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos, boolean fitInScreen) {
-            show(anchor, verticalPos, horizontalPos, 0, 0, fitInScreen);
-        }
-
-        public void show(@NonNull View anchor, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos, int x, int y) {
-            show(anchor, verticalPos, horizontalPos, x, y, true);
-        }
-
         /**
-         * show
-         *
-         * @param anchorView    目标View
-         * @param verticalPos   竖直方向参数
-         * @param horizontalPos 垂直方向参数
-         * @param x             x轴偏移
-         * @param y             y轴偏移
-         * @param fitInScreen   是否固定在屏幕内  false（多出的部分将超出屏幕）
-         */
-        public void show(@NonNull View anchorView, @VerticalPosition int verticalPos, @HorizontalPosition int horizontalPos, int x, int y, boolean fitInScreen) {
-            mWindow.init();
-            mWindow.showAtAnchorView(anchorView, verticalPos, horizontalPos, x, y, fitInScreen);
-        }
-
-        /**
-         * 获取PopupWindow
-         * 注意：使用前先调用init()
+         * 创建PopupWindow
          * @return
          */
-        public SmartPopupWindow getPopupWindow() {
+        public SmartPopupWindow createPopupWindow() {
+            mWindow.init();
             return mWindow;
         }
-
     }
 }
 
